@@ -1,4 +1,4 @@
-# Emotion Classification Using LinearSVC
+# Emotion Classification Using LinearSVM
 
 This project builds an **Emotion Classifier** using **TF-IDF vectorization** and a **Linear Support Vector Machine (LinearSVC)** model. It predicts emotions from input text based on supervised learning.
 
