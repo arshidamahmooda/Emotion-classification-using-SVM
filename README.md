@@ -30,11 +30,12 @@ emotion-svm/
 
 ## 🧪 Kernel Performance Comparison (on 5K Sample)
 
-| Kernel | Accuracy  | Training Time |
-| ------ | --------- | ------------- |
-| Linear | **83.2%** | 0.23 sec      |
-| RBF    | 74.5%     | 2.92 sec      |
-| Poly   | 59.9%     | 9.52 sec      |
+Performance comparison across kernels:
+         accuracy  precision    recall  f1-score
+linear   0.853401   0.852116  0.853401  0.851436
+poly     0.617800   0.745712  0.617800  0.576185
+rbf      0.838746   0.839815  0.838746  0.833539
+sigmoid  0.852777   0.851444  0.852777  0.850484
 
 ✅ **Linear kernel** performed best and was selected for final training.
 
