@@ -1,47 +1,58 @@
-#  Emotion Classification Using LinearSVM
+ Emotion Classification with SVM
+This project performs emotion classification on text using a Support Vector Machine (SVM) model. It includes tweet scraping, preprocessing, clustering (unsupervised learning), model training, performance evaluation, persistence, and an optional alert system.
 
-This project builds an Emotion Classifier using **TF-IDF vectorization** and a **Linear Support Vector Machine (LinearSVC)** model. It classifies English-language tweets into **six basic emotions** using a pre-labeled dataset of over 416,000 tweets.
+ Project Structure
 
-##  Folder Structure
+├── emotions.csv                # Main dataset (pre-labeled)
+├── best_svm_model.pkl          # Saved best-performing SVM model
+├── tfidf_vectorizer.pkl        # Saved TF-IDF vectorizer
+├── label_encoder.pkl           # Saved label encoder
+├── emotion_classifier.py       # Main code file (or .ipynb if notebook)
+└── README.md                   # This file
+⚙️ Features
+✅ 1. Tweet Scraping (Real-Time)
+Uses snscrape to fetch tweets matching emotional keywords (happy, sad, angry, etc.).
 
-emotion-svm/
-├── data/
-│   └── emotions.csv             # Input dataset (416k tweets)
-├── models/
-│   ├── svm_model_linear.pkl     # Trained LinearSVC model
-│   └── tfidf_vectorizer.pkl     # Fitted TF-IDF vectorizer
-├── notebooks/
-│   └── emotion_classifier.ipynb # Jupyter notebook (optional)
-├── src/
-│   └── train_model.py           # Main training pipeline
-├── results/
-│   └── confusion_matrix.png     # Sample confusion matrix
-├── README.md
-└── requirements.txt
+Saves them in a DataFrame for classification.
 
-##  Project Overview
+✅ 2. Text Preprocessing
+Lowercasing, URL/user/hashtag removal
 
-* Supervised learning on tweet text
-* Text preprocessing (cleaning, stopword removal)
-* Feature extraction using **TF-IDF**
-* Emotion classification with **SVM (Linear, RBF, Poly kernels)**
-* Model comparison, confusion matrix visualization
-* Final model saved as `.pkl` files for deployment or inference
+Punctuation and number cleaning
 
-## 🧪 Kernel Performance Comparison (on 5K Sample)
+Stopword removal
 
-Performance comparison across kernels:
-         accuracy  precision    recall  f1-score
-linear   0.874525   0.873999  0.874525  0.873592
-poly     0.644322   0.761073  0.644322  0.602744
-rbf      0.856104   0.857393  0.856104  0.852399
-sigmoid  0.873726   0.873040  0.873726  0.872630
-✅ **Linear kernel** performed best and was selected for final training.
+Stemming using PorterStemmer
 
-# Final Model Performance (Full Dataset)
-Accuracy:89.9%
-Macro Avg F1-Score: 0.85
-Weighted Avg F1-Score:0.90
-Total Tweets: 83,362 (20% test split)
+✅ 3. Clustering (KMeans)
+Applies KMeans clustering to scraped tweets (unsupervised learning)
 
+Helps detect patterns or emotional clusters without labels
 
+✅ 4. SVM Classification
+Trains multiple SVM models using different kernels: linear, poly, rbf, and sigmoid
+
+Evaluates using accuracy, precision, recall, and F1-score
+
+Visualizes confusion matrices
+
+✅ 5. Model Persistence
+Saves:
+
+Best SVM model (best_svm_model.pkl)
+
+TF-IDF vectorizer (tfidf_vectorizer.pkl)
+
+Label encoder (label_encoder.pkl)
+
+✅ 6. Optional Alerting System
+Flags and prints alerts for negative emotions (e.g., sad, angry) from scraped tweets
+
+📈 Best Model Summary
+Kernel	Accuracy	F1-Score
+Linear	0.874	0.873
+Sigmoid	0.873	0.872
+RBF	0.856	0.852
+Poly	0.644	0.602
+
+➡️ Best Performing Kernel: linear
